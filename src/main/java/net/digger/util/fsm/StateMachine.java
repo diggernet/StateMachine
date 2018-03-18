@@ -27,7 +27,9 @@ import java.util.function.Consumer;
  * State Machine implementation.
  * <p>
  * To create a State Machine, extend this class, then use addState() calls to set up States, Events and Actions.
- * 
+ * <p>
+ *  Inspired by the state machine in Joshua Haberman's vtparse (https://github.com/haberman/vtparse).
+ *  
  * @author walton
  *
  * @param <A> Type of Action enum.
@@ -316,8 +318,8 @@ public class StateMachine<A extends Enum<?>, S extends Enum<?>, E> {
 	 * 
 	 * @author walton
 	 *
- * @param <A> Type of Action enum.
- * @param <S> Type of State enum.
+	 * @param <A> Type of Action enum.
+	 * @param <S> Type of State enum.
 	 */
 	private static class Transition<A extends Enum<?>, S extends Enum<?>> {
 		public final S from;

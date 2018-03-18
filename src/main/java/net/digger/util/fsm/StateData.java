@@ -94,20 +94,20 @@ public class StateData<A extends Enum<?>, S extends Enum<?>, E> {
 		E event = (minEvent == null) ? maxEvent : minEvent;
 		// Integer Event
 		if (event instanceof Integer) {
-			if ((int)minEvent > (int)maxEvent) {
+			if ((Integer)minEvent > (Integer)maxEvent) {
 				throw new IllegalArgumentException("minEvent must be <= maxEvent");
 			}
-			this.minEvent = (minEvent == null) ? Integer.MIN_VALUE : (int)minEvent;
-			this.maxEvent = (maxEvent == null) ? Integer.MAX_VALUE : (int)maxEvent;
+			this.minEvent = (minEvent == null) ? Integer.MIN_VALUE : (Integer)minEvent;
+			this.maxEvent = (maxEvent == null) ? Integer.MAX_VALUE : (Integer)maxEvent;
 			return;
 		}
 		// Character Event
 		if (event instanceof Character) {
-			if ((char)minEvent > (char)maxEvent) {
+			if ((Character)minEvent > (Character)maxEvent) {
 				throw new IllegalArgumentException("minEvent must be <= maxEvent");
 			}
-			this.minEvent = (minEvent == null) ? Character.MIN_VALUE : ((char)minEvent & 0xFFFF);
-			this.maxEvent = (maxEvent == null) ? Character.MAX_VALUE : ((char)maxEvent & 0xFFFF);
+			this.minEvent = (minEvent == null) ? Character.MIN_VALUE : ((Character)minEvent & 0xFFFF);
+			this.maxEvent = (maxEvent == null) ? Character.MAX_VALUE : ((Character)maxEvent & 0xFFFF);
 			return;
 		}
 		// Enum Event
@@ -135,16 +135,16 @@ public class StateData<A extends Enum<?>, S extends Enum<?>, E> {
 			String message = null;
 			if (event instanceof Integer) {
 				// Integer Event
-				if (((int)event < minEvent) || ((int)event > maxEvent)) {
+				if (((Integer)event < minEvent) || ((Integer)event > maxEvent)) {
 					message = String.format("Event must be 0x%02x (%d) to 0x%02x (%d). Received: 0x%02x (%d).",
-							minEvent, minEvent, maxEvent, maxEvent, (int)event, (int)event);
+							minEvent, minEvent, maxEvent, maxEvent, (Integer)event, (Integer)event);
 				}
 			} else if (event instanceof Character) {
 				// Character Event
-				if (((char)event < minEvent) || ((char)event > maxEvent)) {
+				if (((Character)event < minEvent) || ((Character)event > maxEvent)) {
 					message = String.format("Event must be 0x%02x (%c) to 0x%02x (%c). Received: 0x%02x (%c).",
 							minEvent, (char)(int)minEvent, maxEvent, (char)(int)maxEvent,
-							(char)event & 0xFF, event);
+							(Character)event & 0xFF, event);
 				}
 			} else if (event instanceof Enum) {
 				// Enum Event
@@ -179,16 +179,16 @@ public class StateData<A extends Enum<?>, S extends Enum<?>, E> {
 			String message = null;
 			if (first instanceof Integer) {
 				// Integer Event
-				if (((int)first < minEvent) || ((int)first > maxEvent) || ((int)last < minEvent) || ((int)last > maxEvent)) {
+				if (((Integer)first < minEvent) || ((Integer)first > maxEvent) || ((Integer)last < minEvent) || ((Integer)last > maxEvent)) {
 					message = String.format("Event must be 0x%02x (%d) to 0x%02x (%d). Received range: 0x%02x (%d) to 0x%02x (%d).",
-							minEvent, minEvent, maxEvent, maxEvent, (int)first, (int)first, (int)last, (int)last);
+							minEvent, minEvent, maxEvent, maxEvent, (Integer)first, (Integer)first, (Integer)last, (Integer)last);
 				}
 			} else if (first instanceof Character) {
 				// Character Event
-				if (((char)first < minEvent) || ((char)first > maxEvent) || ((char)last < minEvent) || ((char)last > maxEvent)) {
+				if (((Character)first < minEvent) || ((Character)first > maxEvent) || ((Character)last < minEvent) || ((Character)last > maxEvent)) {
 					message = String.format("Event must be 0x%02x (%c) to 0x%02x (%c). Received range: 0x%02x (%c) to 0x%02x (%c).",
 							minEvent, (char)(int)minEvent, maxEvent, (char)(int)maxEvent,
-							(char)first & 0xFF, first, (char)last & 0xFF, last);
+							(Character)first & 0xFF, first, (Character)last & 0xFF, last);
 				}
 			} else if (first instanceof Enum) {
 				// Enum Event
@@ -208,7 +208,7 @@ public class StateData<A extends Enum<?>, S extends Enum<?>, E> {
 		EventData<A, S> data = new EventData<>(action, state);
 		if (first instanceof Integer) {
 			// Integer Event
-			for (Integer i=(int)first; i<=(int)last; i++) {
+			for (Integer i=(Integer)first; i<=(Integer)last; i++) {
 				// Since E first is instanceof Integer, we know it is safe to cast Integer i to E.
 				@SuppressWarnings("unchecked")
 				E key = (E)i;
@@ -216,7 +216,7 @@ public class StateData<A extends Enum<?>, S extends Enum<?>, E> {
 			}
 		} else if (first instanceof Character) {
 			// Character Event
-			for (Character i=(char)first; i<=(char)last; i++) {
+			for (Character i=(Character)first; i<=(Character)last; i++) {
 				// Since E first is instanceof Character, we know it is safe to cast Character i to E.
 				@SuppressWarnings("unchecked")
 				E key = (E)i;
